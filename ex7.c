@@ -9,10 +9,15 @@ int main(int argc, char *argv[])
 	char first_name[] = "Zed";
 	char last_name[] = "Shaw";
 
+	//error, at index3 that puts Z on the null byte of this array
+	//warning, at index 4, that overwrites the middle initial when printing last and first name.
+	//first_name[3] = 'Z';
+
 	printf("You are %d miles away.\n", distance);
 	printf("You have %f levels of power.\n", power);
 	printf("You have %f awesome super powers.\n", super_power);
 	printf("I have an initial %c.\n", initial);
+	//mess with pointer below by adding +100 to first_name, to have it point 100 over in memory
 	printf("I have a first name %s.\n", first_name);
 	printf("I have a last name %s.\n", last_name);
 	printf("My whole name is %s %c. %s.\n", 
@@ -42,5 +47,6 @@ int main(int argc, char *argv[])
 
     return 0;
 
-    //float is f, integer is d, c is char, s is string, e is exponent float
+    //float is f, integer is d, c is character, s is full string, e is exponent float
+    // float is smaller than a double, ld is for long decimer. %% is for percentage
 }
