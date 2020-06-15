@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	int i = 0;
 	for (i = 0; argv[1][i] != '\0'; i++){
 		char letter = argv[1][i];
-		//printf("letter is %c", letter);
+		printf("letter is %c", letter);
 
 		switch (letter) {
 			case 'a':
