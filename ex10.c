@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 				printf("%d: %c is not a vowel\n", i, letter);
 
 		}
+		//very fast, if you can break things down into integers, you can use this to do so fast. 
 
 	}
 	return 0;
