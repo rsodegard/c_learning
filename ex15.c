@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	}
 
 	printf("---\n");
-
+	//creating a pointer
 	int *cur_age = ages;
 	char **cur_name = names;
 
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	}
 	printf("---\n");
 
-	//THIRD WAY
+	//THIRD WAY GOOD WAY
 	for (i = 0; i < count; i++){
 		printf("%s is %d years old again.\n", cur_name[i], cur_age[i]);
 	}
@@ -43,4 +43,21 @@ int main(int argc, char *argv[])
 	}
 
 	return 0;
+
+	//Note
+	//int, char, person, void
+	//you can treat computer as gigantic array of bytes.
+	//a regular variable declaration is the actual piece of ram
+	// a pointer dec is the array index, number, address of where it is in ram
+	
+
+
+
+
+
+
+
+
+
+
 }
