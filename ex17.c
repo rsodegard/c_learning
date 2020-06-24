@@ -84,6 +84,80 @@ void Database_close(struct Connection *conn)
 	}
 }
 
+void Database_write(struct Connection *conn)
+{
+	rewind(conn->file);
+
+	int rc = fwrite(conn->db, sizeof(struct Database), 1, conn->file);
+	if (rc != 1)
+		die("Failed to write database.");
+
+	rc = fflush(conn->file);
+	if (rc == -1)
+		die("Cannot flush database.");
+}
+
+void Database_create(struct Connection *conn)
+{
+	int i = 0;
+
+	for (i = 0; i < MAX_ROWS; i++){
+		//make a prototype to initialize it
+		struct Address addr = {.id = i,.set = 0};
+		//then just assign it
+		conn->db->rows[i] = addr;
+	}
+}
+
+void Database_set(struct Connection *conn, int id, const char *name, const char *email)
+{
+	struct Address *addr = &conn->db->rows[id];
+	if (addr->set)
+		die("Aready set, delete it first.");
+
+	addr->set = 1;
+	//WARNING: bug, read how to break it and fix this
+	char *res = strncpy(addr->name, name, MAX_DATA);
+	//demonstrate the strncpy bug
+	if (!res)
+		die("Name copied file");
+
+	res = strncpy(addr->email, email, MAX_DATA);
+	if (!res)
+		die("Email copy failed.");
+}
+
+void Database_get(struct Connection *conn, int id)
+{
+	struct Address *addr = &conn->db->rows[id];
+
+	if (addr->set){
+		Address_print(addr);
+	} else {
+		die("ID is not set");
+	}
+}
+
+void Database_delete(struct Connection *conn, int id)
+{
+	struct Address addr = {.id = id,.set = 0 };
+	conn->db->rows[id] = addr;
+}
+
+void Database_list(struct Connection *conn)
+{
+	int i = 0;
+	struct Database *db = conn->db;
+
+	for (i = 0; i < MAX_ROWS; i++) {
+		struct Address *cur = &db->rows[i];
+
+		if (cur->set) {
+			Address_print(cur);
+		}
+	}
+}
+
 
 
 int main(int argc, char *argv[])
@@ -140,7 +214,10 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-
+// --When you pass in a struct like (struct Conneciton *conn)
+//on a function, if you dont use pointer, you are passing a full structure
+//that structure can take over the function call stack, and is copied onto the stack
+// --Use stack for just simple addresses, and use heap to pass around structures that need to be shared.
 
 
 //everytime you call malloc HEAP, everything else STACK
