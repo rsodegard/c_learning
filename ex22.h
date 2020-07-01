@@ -6,10 +6,10 @@ extern int THE_SIZE;
 
 // gets and sets an dinternal static variable in ex22.c
 int get_age();
-int set_age(int age);
+void set_age(int age);
 
 //updates a static variable thats inside update_ratio
-double update_ratio(double_ratio);
+double update_ratio(double ratio);
 
 void print_size();
 

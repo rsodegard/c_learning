@@ -8,7 +8,7 @@ static int THE_AGE = 37;
 
 int get_age()
 {
-	return THE_AGE
+	return THE_AGE;
 }
 
 void set_age(int age)
@@ -27,5 +27,5 @@ double update_ratio(double new_ratio)
 
 void print_size()
 {
-	log_info("I think size is: %d", THE_SIZE)
+	log_info("I think size is: %d", THE_SIZE);
 }
