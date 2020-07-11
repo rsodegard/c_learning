@@ -44,6 +44,7 @@ int zeds_device(char *from, char *to, int count)
 {
     {
         int n = (count + 7) / 8;
+        debug("n starts: %d, count: %d, count%%8: %d", n, count, count % 8);
 
         switch (count % 8) {
             case 0:
@@ -62,8 +63,12 @@ again:      *to++ = *from++;
             *to++ = *from++;
             case 1:
             *to++ = *from++;
-            if (--n > 0)
+            debug("last case: n=%d", n);
+            if (--n > 0){
+                debug("going again: n=%d", n);
                 goto again;
+            }
+                
         }
     }
 
