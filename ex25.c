@@ -26,4 +26,30 @@ error:
 
 int read_int(int *out_int)
 {
+    char *input = NULL;
+    int rc = read_string(&input, MAX_DATA);
+    check(rc == 0, "Failed to read number.");
+
+    *out_int = atoi(input);
+
+    free(input);
+    return 0;
+
+error:
+    if (input)
+        free(input);
+    return -1;
+}
+
+int read_scan(const char *fmt, ...)
+{
+    int i = 0;
+    int rc = 0;
+    int *out_int = NULL;
+    char *out_char = NULL;
+    char **out_string = NULL;
+    int max_buffer = 0;
+
+    va_list argp;
+    va_start(argp, fmt);
 }
