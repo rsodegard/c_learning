@@ -21,7 +21,7 @@ error:
     if (*out_string)
         free(*out_string);
     *out_string = NULL;
-    return -1
+    return -1;
 }
 
 int read_int(int *out_int)
@@ -95,4 +95,19 @@ int read_scan(const char *fmt, ...)
 
     va_end(argp);
     return 0;
+
+error:
+    va_end(argp);
+    return -1;
+}
+
+int main(int argc, char *argv[])
+{
+    char *first_name = NULL;
+    char initial = ' ';
+    char *last_name = NULL;
+    int age = 0;
+
+    printf("What's your first name? ");
+    int rc = read_scan("%s", MAX_DATA, &first_name);
 }
