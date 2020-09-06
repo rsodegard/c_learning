@@ -15,10 +15,10 @@ void die(const char *message)
   exit(1);
 }
 
-void alive(const char *message)
-{
-  printf("The message is %s\n", message);
-}
+// void alive(int n)
+// {
+//   printf("The size of the array is %zu\n", sizeof(n));
+// }
 
 typedef int (*compare_cb) (int a, int b);
 
@@ -67,7 +67,7 @@ void test_sorting(int *numbers, int count, compare_cb cmp)
 		die("Failed to sort as requested");
 
 	for (i = 0; i < count; i++) {
-		printf("Number %d ", sorted[i]);
+		printf("%d ", sorted[i]);
 	}
 	printf("\n");
 
@@ -89,6 +89,7 @@ int main(int argc, char *argv[])
 		numbers[i] = atoi(inputs[i]);
 	}
 
+  printf("The size of the program is %zu\n", sizeof(count));
 	test_sorting(numbers, count, sorted_order);
 	test_sorting(numbers, count, reverse_order);
 
@@ -97,5 +98,6 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+//Get good at printing, size, and location 
 
 //1 Test the error, how does perror interact with the printf
