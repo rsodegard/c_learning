@@ -14,19 +14,26 @@ void die(const char *message)
 	exit(1);
 }
 
-int *sum_all(int *numbers, int count)
-{
-  for (i = 0; i < count; i++) {
-
-  }
-}
+// int *sum_all(int *numbers, int count)
+// {
+//   for (i = 0; i < count; i++) {
+//
+//   }
+// }
 
 int main(int argc, char *argv[])
 {
-  if (argc < 2) die("USAGE: sumall 5 897 345");
+  if (argc < 2) die("USAGE: ./sumall 5 897 345");
 
-  int count = argc - 1;
+  char *array;
+  int sum = 0;
   int i = 0;
-  char **inputs = argv + 1
-
+  int count = argc;
+  for (i = 0; i < count; i++) {
+    array = argv[i];
+    sum = sum + array;
+    printf("%s\n", array);
+  }
+  printf("%s\n", sum);
+  return 0;
 }
